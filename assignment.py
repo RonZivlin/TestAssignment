@@ -1,4 +1,15 @@
 import enum
+import json
+
+
+def printPayload(body):
+  try:
+    print(json.loads(body))
+    print()
+  except ValueError as e:
+    print(body)
+  return True
+
 
 #getting from user a file path to a file containing a sequence of HTTP 1.1 messages and their responses.
 filePath = input("enter file path:")
@@ -19,7 +30,7 @@ class message(enum.Enum):
    messageBody = 3
 
 messageSection = message.firstLine
-
+body = ""
 
 for line in lines:
 
@@ -28,6 +39,9 @@ for line in lines:
 
             if numOfMessage % 2 == 0:
                 print("Res_" + str(int(numOfMessage/2)) + ":\n")
+                print("payload:")
+                printPayload(body)
+
             else:
                 print("Req_" + str(int(numOfMessage/2 + 1)) + ":\n")
                 print ("method: " + method)
@@ -37,6 +51,7 @@ for line in lines:
             numOfMessage += 1
             messageSection = message.firstLine
             endOfMessage = False
+            body = ""
 
         else:
             endOfMessage = True
@@ -54,4 +69,8 @@ for line in lines:
 
     if messageSection == message.header and line == "\n":
         messageSection = message.messageBody
+        continue
+
+    if messageSection == message.messageBody:
+        body += line
         continue
