@@ -62,13 +62,13 @@ for line in lines:
                 messageInfo += "end-point: " + endPoint + "\n"
                 s = urlparse(endPoint).params
                 messageInfo += "path parameters: " + str(urlparse(endPoint).params.split(';')) + "\n"
-                messageInfo += "query string parameters: " + str(urlparse(endPoint).query.split('&')) + "\n"
+                messageInfo += "query string parameters: " + str(urlparse(endPoint).query.split('&')) + "\n\n"
                 messageInfo += "body arguments:\n"
                 if (isJson(body) != False):
-                    messageInfo += str(isJson(body)).replace(':', "=") + "\n"
+                    messageInfo += str(isJson(body)).replace(':', "=") + "\n\n"
                 else:
                     messageInfo += "\n"
-                messageInfo += "header parameters:\n\n"
+                messageInfo += "header parameters:\n"
                 messageInfo += headerParameters
 
                 #adding the info about the request to the req list.

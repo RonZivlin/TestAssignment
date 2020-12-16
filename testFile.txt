@@ -1,0 +1,118 @@
+GET /hello.htm HTTP/1.1
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+Host: www.tutorialspoint.com
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: Keep-Alive
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+HTTP/1.1 200 OK
+Date: Mon, 27 Jul 2009 12:28:53 GMT
+Server: Apache/2.2.14 (Win32)
+Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
+Content-Length: 88
+Content-Type: text/html
+Connection: Closed
+
+<html>
+   <body>
+
+   <h1>Hello, World!</h1>
+
+   </body>
+</html>
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+GET /t.html HTTP/1.1
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+Host: www.tutorialspoint.com
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: Keep-Alive
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+GET /hello.htm HTTP1
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+Host: www.tutorialspoint.com
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: Keep-Alive
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+HTTP/1.1 404 Not Found
+Date: Sun, 18 Oct 2012 10:36:20 GMT
+Server: Apache/2.2.14 (Win32)
+Content-Length: 230
+Content-Type: text/html; charset=iso-8859-1
+Connection: Closed
+
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+
+<head>
+   <title>404 Not Found</title>
+</head>
+
+<body>
+   <h1>Not Found</h1>
+   <p>The requested URL /t.html was not found on this server.</p>
+</body>
+
+</html>
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+HTTP/1.1 400 Bad Request
+Date: Sun, 18 Oct 2012 10:36:20 GMT
+Server: Apache/2.2.14 (Win32)
+Content-Length: 230
+Content-Type: text/html; charset=iso-8859-1
+Connection: Closed
+
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+
+<head>
+   <title>400 Bad Request</title>
+</head>
+
+<body>
+   <h1>Bad Request</h1>
+   <p>Your browser sent a request that this server could not understand.<p>
+   <p>The request line contained invalid characters following the protocol string.<p>
+</body>
+
+</html>
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+GET /surfreport;hi=1;nvfjd=sdvnlks?days=3&units=metric&time=1400 HTTP/1.1
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+Host: www.tutorialspoint.com
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: Keep-Alive
+
+{
+    "employee": {
+        "name":       "sonoo",
+        "salary":      56000,
+        "married":    true
+    }
+}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+HTTP/1.1 404 Not Found
+Date: Sun, 18 Oct 2012 10:36:20 GMT
+Server: Apache/2.2.14 (Win32)
+Content-Length: 230
+Content-Type: text/html; charset=iso-8859-1
+Connection: Closed
+
+{
+    "employee": {
+        "name":       "sonoo",
+        "salary":      56000,
+        "married":    true
+    }
+}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------

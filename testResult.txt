@@ -1,0 +1,115 @@
+enter file path:C:\Users\family\PycharmProjects\test\testFile.txt
+Req_1:
+
+method: GET
+end-point: /hello.htm
+path parameters: ['']
+query string parameters: ['']
+
+body arguments:
+
+header parameters:
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: Keep-Alive
+
+Res_1:
+
+payload:
+<html>
+   <body>
+
+   <h1>Hello, World!</h1>
+
+   </body>
+</html>
+
+Req_2:
+
+method: GET
+end-point: /t.html
+path parameters: ['']
+query string parameters: ['']
+
+body arguments:
+
+header parameters:
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: Keep-Alive
+
+Res_2:
+
+payload:
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+
+<head>
+   <title>404 Not Found</title>
+</head>
+
+<body>
+   <h1>Not Found</h1>
+   <p>The requested URL /t.html was not found on this server.</p>
+</body>
+
+</html>
+
+Req_3:
+
+method: GET
+end-point: /hello.htm
+path parameters: ['']
+query string parameters: ['']
+
+body arguments:
+
+header parameters:
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: Keep-Alive
+
+Res_3:
+
+payload:
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+
+<head>
+   <title>400 Bad Request</title>
+</head>
+
+<body>
+   <h1>Bad Request</h1>
+   <p>Your browser sent a request that this server could not understand.<p>
+   <p>The request line contained invalid characters following the protocol string.<p>
+</body>
+
+</html>
+
+Req_4:
+
+method: GET
+end-point: /surfreport;hi=1;nvfjd=sdvnlks?days=3&units=metric&time=1400
+path parameters: ['hi=1', 'nvfjd=sdvnlks']
+query string parameters: ['days=3', 'units=metric', 'time=1400']
+
+body arguments:
+{'employee'= {'name'= 'sonoo', 'salary'= 56000, 'married'= True}}
+
+header parameters:
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: Keep-Alive
+
+Res_4:
+
+payload:
+{'employee': {'name': 'sonoo', 'salary': 56000, 'married': True}}
+
+
+Process finished with exit code 0
