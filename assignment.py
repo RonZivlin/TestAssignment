@@ -1,14 +1,12 @@
 import enum
 import json
+from urllib.parse import urlparse
 
-
-def printPayload(body):
+def isJson(body):
   try:
-    print(json.loads(body))
-    print()
+    return json.loads(body)
   except ValueError as e:
-    print(body)
-  return True
+    return False
 
 
 #getting from user a file path to a file containing a sequence of HTTP 1.1 messages and their responses.
@@ -31,6 +29,7 @@ class message(enum.Enum):
 
 messageSection = message.firstLine
 body = ""
+headerParameters = ""
 
 for line in lines:
 
@@ -40,18 +39,31 @@ for line in lines:
             if numOfMessage % 2 == 0:
                 print("Res_" + str(int(numOfMessage/2)) + ":\n")
                 print("payload:")
-                printPayload(body)
+                if (isJson(body) != False):
+                    print(isJson(body))
+                else:
+                    print(body)
 
             else:
                 print("Req_" + str(int(numOfMessage/2 + 1)) + ":\n")
                 print ("method: " + method)
                 print ("end-point: " + endPoint)
-                print()
+                s = urlparse(endPoint).params
+                print ("path parameters: " + str(urlparse(endPoint).params.split(';')))
+                print ("query string parameters: " + str(urlparse(endPoint).query.split('&')))
+                print ("body arguments: ")
+                if (isJson(body) != False):
+                    print(str(isJson(body)).replace(':', "="))
+                else:
+                    print()
+                print ("header parameters:\n")
+                print (headerParameters)
 
             numOfMessage += 1
             messageSection = message.firstLine
             endOfMessage = False
             body = ""
+            headerParameters = ""
 
         else:
             endOfMessage = True
@@ -67,8 +79,15 @@ for line in lines:
         messageSection = message.header
         continue
 
-    if messageSection == message.header and line == "\n":
-        messageSection = message.messageBody
+
+    if messageSection == message.header:
+
+        if line == "\n":
+            messageSection = message.messageBody
+            continue
+
+        if line.split()[0] != "Host:":
+            headerParameters += line
         continue
 
     if messageSection == message.messageBody:
