@@ -14,8 +14,10 @@ filePath = input("enter file path:")
 f = open(filePath, "r", encoding="utf-8")
 lines = f.readlines()
 
-numOfMessage = 1
 endOfMessage = False
+req = []
+res = []
+isReq = False
 
 crlf = ""
 
@@ -36,34 +38,35 @@ for line in lines:
     if line == crlf or line == crlf + "\n":
         if endOfMessage:
 
-            if numOfMessage % 2 == 0:
-                print("Res_" + str(int(numOfMessage/2)) + ":\n")
-                print("payload:")
-                if (isJson(body) != False):
-                    print(isJson(body))
-                else:
-                    print(body)
-
-            else:
-                print("Req_" + str(int(numOfMessage/2 + 1)) + ":\n")
-                print ("method: " + method)
-                print ("end-point: " + endPoint)
+            if isReq:
+                messageInfo = "method: " + method + "\n"
+                messageInfo += "end-point: " + endPoint + "\n"
                 s = urlparse(endPoint).params
-                print ("path parameters: " + str(urlparse(endPoint).params.split(';')))
-                print ("query string parameters: " + str(urlparse(endPoint).query.split('&')))
-                print ("body arguments: ")
+                messageInfo += "path parameters: " + str(urlparse(endPoint).params.split(';')) + "\n"
+                messageInfo += "query string parameters: " + str(urlparse(endPoint).query.split('&')) + "\n"
+                messageInfo += "body arguments:\n"
                 if (isJson(body) != False):
-                    print(str(isJson(body)).replace(':', "="))
+                    messageInfo += str(isJson(body)).replace(':', "=") + "\n"
                 else:
-                    print()
-                print ("header parameters:\n")
-                print (headerParameters)
+                    messageInfo += "\n"
+                messageInfo += "header parameters:\n\n"
+                messageInfo += headerParameters
 
-            numOfMessage += 1
+                req.append(messageInfo)
+            else:
+                messageInfo = "payload:\n"
+                if (isJson(body) != False):
+                    messageInfo += str(isJson(body)) + "\n"
+                else:
+                    messageInfo += body
+
+                res.append(messageInfo)
+
             messageSection = message.firstLine
             endOfMessage = False
             body = ""
             headerParameters = ""
+            messageInfo = ""
 
         else:
             endOfMessage = True
@@ -76,6 +79,10 @@ for line in lines:
         words = line.split()
         method = words[0]
         endPoint = words[1]
+        if words[0] == "HTTP/1.1":
+            isReq = False
+        else:
+            isReq = True
         messageSection = message.header
         continue
 
@@ -93,3 +100,7 @@ for line in lines:
     if messageSection == message.messageBody:
         body += line
         continue
+
+for i in range(len(req)):
+        print ("Req_" + str(i + 1) + ":\n\n" + req[i])
+        print ("Res_" + str(i + 1) + ":\n\n" + res[i])
